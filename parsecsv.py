@@ -1,21 +1,36 @@
 from src.logexception.logframework import MyLogger
+from src.logexception.exceptionhandler import CustomInputError, MyZeroDivisionException, DataNotValidException
 
-myLogger = MyLogger()
+myLogger = MyLogger().logger
 
 
-def parse_csv_and_get_columns(filename):
-    count = 0
+def parse_csv_and_get_columns(filename, error_type):
     myLogger.logger.info("Read the file")
-    csvFile = open(filename, 'r')
+    csv_file = open(filename, 'r')
+    if csv_file is None:
+        raise CustomInputError
     myLogger.logger.info("Read lines from file")
-    lines = csvFile.readlines()
+    lines = csv_file.readlines()
+    print(lines)
     myLogger.logger.info("Loop through lines")
-    for line in lines[1:]:
+    for line in lines:
+        print(line)
         val = line.split(",")
-        test_str_div = val[0] / val[11]
-        print(test_str_div)
-        test_zero_div = (int(val[0]) / int(val[11]))
+        if error_type == 0:
+            try:
+                test_str_div = val[0] / val[11]
+                print(test_str_div)
+            except TypeError:
+                raise DataNotValidException
+                pass
+        if error_type == 1:
+            try:
+                print("The value at index 11 is {}".format(val[11]))
+                test_zero_div = (int(val[0]) / int(val[11]))
+                print(test_zero_div)
+            except ZeroDivisionError:
+                raise MyZeroDivisionException
 
 
 if __name__ == "__main__":
-    parse_csv_and_get_columns(filename="test.csv")
+    parse_csv_and_get_columns("test.csv", 1)

@@ -5,14 +5,14 @@ myLogger = MyLogger().logger
 
 
 def parse_csv_and_get_columns(filename, error_type):
-    myLogger.logger.info("Read the file")
+    myLogger.info("Read the file")
     csv_file = open(filename, 'r')
     if csv_file is None:
         raise CustomInputError
-    myLogger.logger.info("Read lines from file")
+    myLogger.info("Read lines from file")
     lines = csv_file.readlines()
     print(lines)
-    myLogger.logger.info("Loop through lines")
+    myLogger.info("Loop through lines")
     for line in lines:
         print(line)
         val = line.split(",")
@@ -25,7 +25,6 @@ def parse_csv_and_get_columns(filename, error_type):
                 pass
         if error_type == 1:
             try:
-                print("The value at index 11 is {}".format(val[11]))
                 test_zero_div = (int(val[0]) / int(val[11]))
                 print(test_zero_div)
             except ZeroDivisionError:

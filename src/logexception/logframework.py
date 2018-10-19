@@ -10,5 +10,3 @@ class MyLogger:
             config = yaml.load(stream)
         logging.config.dictConfig(config)
         self.logger = logging.getLogger("simpleExample")
-
-

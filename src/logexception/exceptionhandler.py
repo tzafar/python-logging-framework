@@ -14,7 +14,7 @@ class CustomInputError(Exception):
 
 class MyZeroDivisionException(ZeroDivisionError):
     def __init__(self):
-        print("The data is not valid")
+        print("divide by 0")
 
 
 class DataNotValidException(TypeError):

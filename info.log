@@ -1,0 +1,4 @@
+2018-10-19 14:37:15,903 - simpleExample - INFO - Read the file
+2018-10-19 14:37:15,903 - simpleExample - INFO - Read lines from file
+2018-10-19 14:37:15,904 - simpleExample - INFO - Loop through lines
+2018-10-19 14:37:15,904 - simpleExample - ERROR - divide by zero

@@ -28,6 +28,7 @@ def parse_csv_and_get_columns(filename, error_type):
                 test_zero_div = (int(val[0]) / int(val[11]))
                 print(test_zero_div)
             except ZeroDivisionError:
+                myLogger.error("divide by zero")
                 raise MyZeroDivisionException
 
 

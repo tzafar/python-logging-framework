@@ -1,6 +1,6 @@
 import pandas as pd
 
-flights_file = pd.read_csv('flights.csv')
+flights_file = pd.read_csv('data/flights.csv')
 
 
 def drop_a_column():
@@ -44,7 +44,6 @@ def get_random_sample():
 
 
 def normalization():
-    #(df.DEPARTURE_DELAY - df.DEPARTURE_DELAY.min()) / (df.DEPARTURE_DELAY.max() - df.DEPARTURE_DELAY.min())
     flights_file['dd'] = (flights_file.DEPARTURE_DELAY - flights_file.DEPARTURE_DELAY.min())/ (flights_file.DEPARTURE_DELAY.max() - flights_file.DEPARTURE_DELAY.min())
     print("normalization output:")
     print(flights_file['dd'])

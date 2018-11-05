@@ -1,8 +1,8 @@
 import pandas as pd
 import numpy as np
 
-flights_file = pd.read_csv('data/flights.csv')
-airports_data = pd.read_csv('data/airports.csv')
+flights_file = pd.read_csv('../data/flights.csv')
+airports_data = pd.read_csv('../data/airports.csv')
 
 
 def replace_nan_with_mean():
@@ -16,9 +16,7 @@ def get_descriptions():
 
 
 def remove_outliers():
-    print("Number of rows before removing the outliers: {0}".format(flights_file.YEAR.count()))
     required_data = flights_file[flights_file.DEPARTURE_DELAY.abs() < (flights_file.DEPARTURE_DELAY.std() * 3)]
-    print("Number of rows before removing the outliers: {0}".format(required_data.YEAR.count()))
     print(required_data)
 
 
@@ -29,8 +27,7 @@ def remove_outliers():
 #     print(numeric_data)
 
 def log_of_a_column():
-    print(flights_file.YEAR)
-    print(np.log(flights_file.YEAR))
+    print(np.log(flights_file.DEPARTURE_DELAY))
 
 
 def new_column():
@@ -82,8 +79,13 @@ def percentage_flights_leaving_before_1200():
 
 def number_of_flights_for_each_route():
     flights_file['ROUTE'] = flights_file.ORIGIN_AIRPORT + ' - ' + flights_file.DESTINATION_AIRPORT
-    df = flights_file[['ROUTE', 'YEAR']].groupby('ROUTE').count()
-    print(df.head())
+
+    print(flights_file.head(2))
+    pt = flights_file.pivot_table(data=flights_file['AIRLINE','ROUTE'],
+                        index=flights_file['AIRLINE'],
+                        columns=flights_file['ROUTE'],
+                        aggfunc=len)
+    print(pt)
 
 
 def for_each_airline_percentage_of_each_route():
@@ -105,4 +107,4 @@ def pca_to_reduce_variable():
 # all_numeric_log_transformed()
 # mean_departure_delay_for_each_arline()
 # mean_geohash_for_each_arline()
-#number_of_flights_for_each_route()
+number_of_flights_for_each_route()

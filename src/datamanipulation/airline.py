@@ -1,6 +1,6 @@
 import pandas as pd
 
-flights_file = pd.read_csv('data/flights.csv')
+flights_file = pd.read_csv('../data/flights.csv')
 
 
 def drop_a_column():
